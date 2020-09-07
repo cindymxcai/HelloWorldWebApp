@@ -7,6 +7,7 @@ namespace HelloWorldWebApp
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            Server.Start();
         }
     }
 }
