@@ -1,6 +1,8 @@
 using System;
+using System.IO;
 using System.Net;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace HelloWorldWebApp
@@ -48,7 +50,9 @@ namespace HelloWorldWebApp
                         case HttpMethod.Post:
                             Console.WriteLine("posting to users");
                             context.Response.StatusCode = (int) HttpStatusCode.Created;
-                            _users.Post(context);
+                            var json = ReadBody(context);
+                            var user = JsonConvert.DeserializeObject<User>(json);        
+                            _users.Post(user);
                             Response.Write($"users:\n {JsonConvert.SerializeObject(_users.Get())}", context);
                             break;
                         case HttpMethod.Put:
@@ -79,6 +83,14 @@ namespace HelloWorldWebApp
                 return method;
             }
             throw new Exception("Invalid method");
+        }
+        
+        public string ReadBody( HttpListenerContext context)
+        {
+            var body = context.Request.InputStream;
+            var streamReader = new StreamReader(body, context.Request.ContentEncoding);
+            return  streamReader.ReadToEnd();
+
         }
     }
 }

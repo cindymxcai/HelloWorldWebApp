@@ -4,11 +4,11 @@ namespace HelloWorldWebApp
 {
     public static class Message
     {
-        public static string Write(string name,  DateTime systemTime)
+        public static string Write(string name, DateTime systemTime, string message)
         {
             var time = $"{systemTime:hh:mmtt}".ToLower();
             var date = $"{systemTime:dd MMMM yyyy}";
-            return $"Hello {name} - the time on the server is {time} on {date}";
+            return $"Hello {name} - the time on the server is {time} on {date}\n{message}";
         }
     }
 }

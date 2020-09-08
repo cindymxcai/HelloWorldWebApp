@@ -16,9 +16,10 @@ namespace HelloWorldWebApp
             return _dataRetriever.GetAllUsers();
         }
 
-        public void Post(HttpListenerContext context)
+        public void Post(User user)
         {
-            throw new System.NotImplementedException();
+            _dataRetriever.AddUser(user);
+            
         }
 
         public void Put(HttpListenerContext context)

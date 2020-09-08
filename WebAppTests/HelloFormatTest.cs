@@ -1,6 +1,7 @@
 using System;
 using HelloWorldWebApp;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace WebAppTests
 {
@@ -10,11 +11,11 @@ namespace WebAppTests
        public void GivenNameShouldWriteMessageInCorrectFormat()
        {
            var systemTime = new DateTime(2018, 3, 14, 22, 48, 0);
-           var expected = "Hello Bob - the time on the server is 10:48pm on 14 March 2018";
+           var expected = "Hello Bob - the time on the server is 10:48pm on 14 March 2018\n";
 
-           var actual = Message.Write("Bob", systemTime);
-
-           Assert.Equal(expected, actual);
+           var actual = Message.Write("Bob", systemTime, "");
+           
+          Assert.Equal(expected, actual);
        } 
     }
 }
