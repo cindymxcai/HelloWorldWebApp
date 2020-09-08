@@ -9,4 +9,11 @@
       <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="Users.json" />
+      <Content Include="Users.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>

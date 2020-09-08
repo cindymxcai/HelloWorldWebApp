@@ -9,7 +9,7 @@ namespace WebAppTests
     public class ServerTests
     {
         [Fact]
-        public  void SendingAGetRequestShouldReturnGreeting()
+        public void SendingAGetRequestShouldReturnCorrectStatusCode()
         {
             var serverThread = new Thread(Server.Start);
 

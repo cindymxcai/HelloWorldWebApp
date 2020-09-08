@@ -22,7 +22,7 @@ namespace HelloWorldWebApp
             {
                 var context = Listener.GetContext();  // Gets the request
                 Console.WriteLine($"{context.Request.HttpMethod} {context.Request.Url}");
-
+                
                 var buffer = System.Text.Encoding.UTF8.GetBytes(Message.Write("Cindy", DateTime.Now));
                 context.Response.ContentLength64 = buffer.Length;
                 context.Response.OutputStream.Write(buffer, 0, buffer.Length);  // forces send of response
