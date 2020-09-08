@@ -16,7 +16,6 @@ namespace HelloWorldWebApp
             streamReader.Close();
 
             return JsonConvert.DeserializeObject<List<User>>(jsonString);
-            
         }
 
         public void AddUser(User user)
@@ -34,6 +33,20 @@ namespace HelloWorldWebApp
             streamWriter.WriteLine(newJson);
             
             streamWriter.Close();
+        }
+
+        public void DeleteAllUsers()
+        {
+            var allUsers = GetAllUsers();
+            allUsers.Clear();
+            CreateNewJArray(allUsers);
+        }
+        
+        public void DeleteUser(User user)
+        {
+            var allUsers = GetAllUsers();
+            allUsers.Remove(allUsers.First(u => u.Name == user.Name));
+            CreateNewJArray(allUsers);
         }
     }
 }

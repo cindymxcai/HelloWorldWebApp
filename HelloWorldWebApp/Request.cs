@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Net;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 
 namespace HelloWorldWebApp
@@ -37,7 +36,7 @@ namespace HelloWorldWebApp
             {
                 case "/":
                     context.Response.StatusCode = (int) HttpStatusCode.OK;
-                    Response.Write("Index",context);
+                    Response.Write(_users.Get(), context);
                     break;
                 case "/users":
                     switch (ConvertHttpMethodToEnum(context.Request.HttpMethod))
@@ -84,8 +83,8 @@ namespace HelloWorldWebApp
             }
             throw new Exception("Invalid method");
         }
-        
-        public string ReadBody( HttpListenerContext context)
+
+        private string ReadBody( HttpListenerContext context)
         {
             var body = context.Request.InputStream;
             var streamReader = new StreamReader(body, context.Request.ContentEncoding);

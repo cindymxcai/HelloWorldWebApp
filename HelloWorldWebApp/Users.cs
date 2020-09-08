@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Net;
+using Newtonsoft.Json.Linq;
 
 namespace HelloWorldWebApp
 {
@@ -11,6 +12,7 @@ namespace HelloWorldWebApp
         {
             _dataRetriever = dataRetriever;
         }
+
         public List<User> Get()
         {
             return _dataRetriever.GetAllUsers();
@@ -19,7 +21,7 @@ namespace HelloWorldWebApp
         public void Post(User user)
         {
             _dataRetriever.AddUser(user);
-            
+
         }
 
         public void Put(HttpListenerContext context)
@@ -29,7 +31,13 @@ namespace HelloWorldWebApp
 
         public void DeleteAll()
         {
-            throw new System.NotImplementedException();
+            _dataRetriever.DeleteAllUsers();
         }
+
+        public void Delete(User user)
+        {
+            _dataRetriever.DeleteUser(user);
+        }
+
     }
 }
